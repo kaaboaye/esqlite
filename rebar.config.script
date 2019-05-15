@@ -22,12 +22,6 @@ CFlags =
         CFlagsOverride -> CFlagsOverride
     end.
 
-MixTarget =
-    case os:getenv("MIX_TARGET") of
-        NotDefined when NotDefined == false; NotDefined == [] -> "";
-        Target -> "_" ++ Target
-    end.
-
 [
     {require_min_otp_vsn, "R15"},
     {port_env, [
@@ -44,7 +38,7 @@ MixTarget =
         {"CFLAGS", CFlags}
     ] ++ LdEnv},
     {port_specs, [
-        {"priv/esqlite3_nif" ++ MixTarget ++ ".so", NifSources}
+        {"priv/esqlite3_nif.so", NifSources}
     ]},
 
     {plugins, [pc]},
